@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -81,7 +81,7 @@ const FOOTER_LINKS = [
 ];
 
 const Landing = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="">
@@ -92,7 +92,11 @@ const Landing = () => {
             <li></li>
           </ul>
 
-          <Button size="lg" className="px-6 cursor-pointer" onClick={() => setIsModalOpen(true)}>
+          <Button
+            size="lg"
+            className="px-6 cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
             Get Started
           </Button>
         </div>
@@ -118,6 +122,7 @@ const Landing = () => {
             <Button
               size="lg"
               className="w-full px-8 cursor-pointer bg-white text-black hover:bg-white/85 sm:w-auto"
+              onClick={() => setIsModalOpen(true)}
             >
               Get Started
             </Button>
@@ -161,9 +166,7 @@ const Landing = () => {
                 className="flex flex-col items-center gap-2 text-center"
                 delay={index * 100}
               >
-                <li
-                  className="flex flex-col items-center gap-2 text-center"
-                >
+                <li className="flex flex-col items-center gap-2 text-center">
                   <Icon
                     className="size-6 text-foreground/70"
                     strokeWidth={1.75}
@@ -192,29 +195,34 @@ const Landing = () => {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {CAPTURE_FEATURES.map(({ icon: Icon, title, description }, index) => (
-              <AnimateOnEnter
-                key={title}
-                className="card transition-shadow hover:shadow-md"
-                delay={index * 100}
-              >
-                <Card key={title} className="transition-shadow hover:shadow-md">
-                  <CardContent>
-                    <div className="flex size-11 items-center justify-center rounded-lg bg-muted text-foreground/70">
-                      <Icon
-                        className="size-5"
-                        strokeWidth={1.75}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </AnimateOnEnter>
-            ))}
+            {CAPTURE_FEATURES.map(
+              ({ icon: Icon, title, description }, index) => (
+                <AnimateOnEnter
+                  key={title}
+                  className="card transition-shadow hover:shadow-md"
+                  delay={index * 100}
+                >
+                  <Card
+                    key={title}
+                    className="transition-shadow hover:shadow-md"
+                  >
+                    <CardContent>
+                      <div className="flex size-11 items-center justify-center rounded-lg bg-muted text-foreground/70">
+                        <Icon
+                          className="size-5"
+                          strokeWidth={1.75}
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <h3 className="mt-4 text-base font-semibold">{title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </AnimateOnEnter>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -260,8 +268,13 @@ const Landing = () => {
       <section className="bg-black py-16 text-center sm:py-20 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            <AnimateOnEnter className="text-3xl font-bold tracking-tight text-white sm:text-4xl" delay={300}>
-              <TextReveal lines={["Ready to transform your data collection?"]} />
+            <AnimateOnEnter
+              className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+              delay={300}
+            >
+              <TextReveal
+                lines={["Ready to transform your data collection?"]}
+              />
             </AnimateOnEnter>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-white/70 sm:text-lg">
