@@ -1,69 +1,276 @@
 import Image from "next/image";
+import {
+  BarChart3,
+  Blocks,
+  Download,
+  GitBranch,
+  LayoutGrid,
+  Palette,
+  RefreshCw,
+  Shield,
+  Zap,
+} from "lucide-react";
 
-export default function Home() {
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { TextReveal } from "@/components/text-reveal";
+
+const FEATURES = [
+  { icon: Blocks, label: "No-code builder" },
+  { icon: Shield, label: "Secure by default" },
+  { icon: Zap, label: "Instant publish" },
+  { icon: RefreshCw, label: "Realtime responses" },
+  { icon: Download, label: "Export anywhere" },
+];
+
+const CAPTURE_FEATURES = [
+  {
+    icon: LayoutGrid,
+    title: "Drag & drop",
+    description:
+      "Intuitively assemble complex forms in seconds without writing a single line of code.",
+  },
+  {
+    icon: GitBranch,
+    title: "Conditional logic",
+    description:
+      "Create personalized surveys by showing or hiding fields based on previous answers.",
+  },
+  {
+    icon: Palette,
+    title: "Custom branding",
+    description:
+      "Make every form feel native to your brand with custom colors, fonts, and logic.",
+  },
+  {
+    icon: BarChart3,
+    title: "Instant analytics",
+    description:
+      "Monitor completion rates, drop-off, and responses in real-time dashboards.",
+  },
+];
+
+const STEPS = [
+  {
+    title: "Build",
+    description:
+      "Select a template or start from scratch with our visual builder.",
+  },
+  {
+    title: "Publish",
+    description:
+      "Share via link, embed on your site, or send via email campaigns.",
+  },
+  {
+    title: "Collect",
+    description:
+      "Watch responses roll in and route data directly to your favorite tools.",
+  },
+];
+
+const FOOTER_LINKS = [
+  "Privacy Policy",
+  "Terms of Service",
+  "Cookie Policy",
+  "Security",
+];
+
+const Landing = () => {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="">
+      <nav className="border-b sticky top-0 bg-white z-50">
+        <div className="flex items-center justify-between mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <h1 className="text-2xl font-bold sm:text-3xl">Vorm</h1>
+          <ul>
+            <li></li>
+          </ul>
+
+          <Button size="lg" className="px-6 cursor-pointer">
+            Get Started
+          </Button>
+        </div>
+      </nav>
+
+      {/* hero section */}
+      <section className="bg-[url('/images/screen.png')] bg-cover bg-center bg-no-repeat text-white">
+        <div className="mx-auto w-full max-w-7xl px-4 pt-16 pb-0 sm:px-6 sm:pt-20  lg:px-8 lg:pt-24 ">
+          <h1 className="text-4xl font-bold leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl">
+            <TextReveal
+              lines={[
+                "Build forms",
+                "Customers actually",
+                "enjoy filling out.",
+              ]}
+            />
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-4">
+            <Button
+              size="lg"
+              className="w-full px-8 cursor-pointer bg-white text-black hover:bg-white/85 sm:w-auto"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Get Started
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full px-8 cursor-pointer border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto"
             >
-              Learning
-            </a>{" "}
-            center.
+              Learn More
+            </Button>
+          </div>
+
+          <div className="mt-16 sm:mt-20">
+            <Image
+              src="/images/form-demo.png"
+              alt="Vorm form builder demo"
+              width={1284}
+              height={903}
+              priority
+              className="mx-auto h-auto w-full rounded-t-4xl "
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* icons section */}
+      <section className="bg-gray-50 py-10 ">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-sm font-semibold tracking-widest text-muted-foreground sm:text-base md:text-lg">
+            <TextReveal
+              lines={["EVERYTHING YOU NEED TO BUILD, PUBLISH, AND COLLECT"]}
+            />
+          </h2>
+
+          <ul className="mt-10 flex flex-wrap items-start justify-center gap-x-10 gap-y-8">
+            {FEATURES.map(({ icon: Icon, label }) => (
+              <li
+                key={label}
+                className="flex flex-col items-center gap-2 text-center"
+              >
+                <Icon
+                  className="size-6 text-foreground/70"
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                />
+                <span className="text-xs font-medium text-muted-foreground sm:text-sm">
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* feature cards section */}
+      <section className="bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              <TextReveal lines={["Everything you need to capture data"]} />
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+              Powerful features hidden behind a beautifully simple interface.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {CAPTURE_FEATURES.map(({ icon: Icon, title, description }) => (
+              <Card key={title} className="transition-shadow hover:shadow-md">
+                <CardContent>
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-muted text-foreground/70">
+                    <Icon
+                      className="size-5"
+                      strokeWidth={1.75}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* how it works section */}
+      <section className=" bg-gray-50 py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              <TextReveal lines={["How it works"]} />
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+              From idea to insights in three simple steps.
+            </p>
+          </div>
+
+          <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {STEPS.map((step, index) => (
+              <li
+                key={step.title}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="flex size-12 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground">
+                  {index + 1}
+                </div>
+                <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  {step.description}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* CTA banner */}
+      <section className="bg-black py-16 text-center sm:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <TextReveal lines={["Ready to transform your data collection?"]} />
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base text-white/70 sm:text-lg">
+            Join thousands of teams already building better forms with Vorm.
+          </p>
+          <Button
+            size="lg"
+            className="mt-8 w-full cursor-pointer bg-white px-8 text-black hover:bg-white/85 sm:w-auto"
+          >
+            Start for free today
+          </Button>
+        </div>
+      </section>
+
+      {/* footer */}
+      <footer className="border-t bg-white">
+        <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <span className="text-2xl font-bold">Vorm</span>
+            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link}>
+                  <a
+                    href="#"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="border-t">
+          <p className="mx-auto w-full max-w-7xl px-4 py-6 text-center text-xs text-muted-foreground sm:px-6 sm:text-sm lg:px-8">
+            &copy; 2026 Vorm Inc. All rights reserved.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
-}
+};
+
+export default Landing;
