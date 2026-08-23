@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image";
+import { useState } from "react";
 import {
   BarChart3,
   Blocks,
@@ -15,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TextReveal } from "@/components/text-reveal";
 import { AnimateOnEnter } from "@/components/animate-on-enter";
+import { AuthModal } from "@/components/auth-modal";
 
 const FEATURES = [
   { icon: Blocks, label: "No-code builder" },
@@ -77,6 +81,8 @@ const FOOTER_LINKS = [
 ];
 
 const Landing = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <div className="">
       <nav className="border-b sticky top-0 bg-white z-50">
@@ -86,11 +92,13 @@ const Landing = () => {
             <li></li>
           </ul>
 
-          <Button size="lg" className="px-6 cursor-pointer">
+          <Button size="lg" className="px-6 cursor-pointer" onClick={() => setIsModalOpen(true)}>
             Get Started
           </Button>
         </div>
       </nav>
+
+      <AuthModal isOpen={isModalOpen} onToggle={setIsModalOpen} />
 
       {/* hero section */}
       <section className="bg-[url('/images/screen.png')] bg-cover bg-center bg-no-repeat text-white">
