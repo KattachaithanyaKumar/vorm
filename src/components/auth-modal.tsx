@@ -36,7 +36,7 @@ export function AuthModal({
         onClick={() => onToggle(false)}
         role="presentation"
       >
-        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
           {/* Modal itself - pointer-events contained */}
           <div
             className="relative bg-white rounded-2xl w-full max-w-md mx-4 sm:max-w-md shadow-2xl transform transition-all duration-300 sm:scale-100"
