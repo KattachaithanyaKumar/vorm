@@ -32,7 +32,12 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const session = await supabase.auth.getSession();
+  const user = session?.data?.session?.user ?? null;
+
+  if (user && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
 
   return supabaseResponse;
 }

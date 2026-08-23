@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BarChart3,
   Blocks,
@@ -82,6 +82,11 @@ const FOOTER_LINKS = [
 
 const Landing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Set document title
+  useEffect(() => {
+    document.title = "Vorm"
+  }, []);
 
   return (
     <div className="">
