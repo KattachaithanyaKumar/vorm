@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import {
   BarChart3,
   Blocks,
@@ -15,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TextReveal } from "@/components/text-reveal";
 import { AnimateOnEnter } from "@/components/animate-on-enter";
+import { AuthModal } from "@/components/auth-modal";
 
 const FEATURES = [
   { icon: Blocks, label: "No-code builder" },
@@ -77,6 +81,13 @@ const FOOTER_LINKS = [
 ];
 
 const Landing = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Set document title
+  useEffect(() => {
+    document.title = "Vorm"
+  }, []);
+
   return (
     <div className="">
       <nav className="border-b sticky top-0 bg-white z-50">
@@ -86,11 +97,17 @@ const Landing = () => {
             <li></li>
           </ul>
 
-          <Button size="lg" className="px-6 cursor-pointer">
+          <Button
+            size="lg"
+            className="px-6 cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
             Get Started
           </Button>
         </div>
       </nav>
+
+      <AuthModal isOpen={isModalOpen} onToggle={setIsModalOpen} />
 
       {/* hero section */}
       <section className="bg-[url('/images/screen.png')] bg-cover bg-center bg-no-repeat text-white">
@@ -110,6 +127,7 @@ const Landing = () => {
             <Button
               size="lg"
               className="w-full px-8 cursor-pointer bg-white text-black hover:bg-white/85 sm:w-auto"
+              onClick={() => setIsModalOpen(true)}
             >
               Get Started
             </Button>
@@ -117,6 +135,7 @@ const Landing = () => {
               variant="outline"
               size="lg"
               className="w-full px-8 cursor-pointer border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto"
+              onClick={() => setIsModalOpen(true)}
             >
               Learn More
             </Button>
@@ -147,15 +166,13 @@ const Landing = () => {
           </h2>
 
           <AnimateOnEnter className="mt-10 flex flex-wrap items-start justify-center gap-x-10 gap-y-8">
-            {FEATURES.map(({ icon: Icon, label }, index) => (
+            {FEATURES.map(({ icon: Icon, label }, i) => (
               <AnimateOnEnter
                 key={label}
                 className="flex flex-col items-center gap-2 text-center"
-                delay={index * 100}
+                delay={i * 100}
               >
-                <li
-                  className="flex flex-col items-center gap-2 text-center"
-                >
+                <li className="flex flex-col items-center gap-2 text-center">
                   <Icon
                     className="size-6 text-foreground/70"
                     strokeWidth={1.75}
@@ -184,29 +201,34 @@ const Landing = () => {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {CAPTURE_FEATURES.map(({ icon: Icon, title, description }, index) => (
-              <AnimateOnEnter
-                key={title}
-                className="card transition-shadow hover:shadow-md"
-                delay={index * 100}
-              >
-                <Card key={title} className="transition-shadow hover:shadow-md">
-                  <CardContent>
-                    <div className="flex size-11 items-center justify-center rounded-lg bg-muted text-foreground/70">
-                      <Icon
-                        className="size-5"
-                        strokeWidth={1.75}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </AnimateOnEnter>
-            ))}
+            {CAPTURE_FEATURES.map(
+              ({ icon: Icon, title, description }, index) => (
+                <AnimateOnEnter
+                  key={title}
+                  className="card transition-shadow hover:shadow-md"
+                  delay={index * 100}
+                >
+                  <Card
+                    key={title}
+                    className="transition-shadow hover:shadow-md"
+                  >
+                    <CardContent>
+                      <div className="flex size-11 items-center justify-center rounded-lg bg-muted text-foreground/70">
+                        <Icon
+                          className="size-5"
+                          strokeWidth={1.75}
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <h3 className="mt-4 text-base font-semibold">{title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </AnimateOnEnter>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -252,8 +274,13 @@ const Landing = () => {
       <section className="bg-black py-16 text-center sm:py-20 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            <AnimateOnEnter className="text-3xl font-bold tracking-tight text-white sm:text-4xl" delay={300}>
-              <TextReveal lines={["Ready to transform your data collection?"]} />
+            <AnimateOnEnter
+              className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+              delay={300}
+            >
+              <TextReveal
+                lines={["Ready to transform your data collection?"]}
+              />
             </AnimateOnEnter>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-white/70 sm:text-lg">
