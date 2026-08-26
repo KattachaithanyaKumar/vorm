@@ -85,7 +85,7 @@ const Landing = () => {
 
   // Set document title
   useEffect(() => {
-    document.title = "Vorm"
+    document.title = "Vorm";
   }, []);
 
   return (
@@ -99,7 +99,7 @@ const Landing = () => {
 
           <Button
             size="lg"
-            className="px-6 cursor-pointer"
+            className="px-8 cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
             Get Started

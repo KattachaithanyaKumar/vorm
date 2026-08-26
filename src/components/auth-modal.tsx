@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { FaGoogle } from "react-icons/fa6";
 
 export function AuthModal({
   isOpen,
@@ -113,7 +114,7 @@ export function AuthModal({
           </DialogTitle>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="px-6 space-y-4">
           {/* Google OAuth button - above email form */}
 
           {/* Email / Password Form */}
@@ -124,6 +125,7 @@ export function AuthModal({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isSubmitting}
+              className="h-10 rounded-md border border-input bg-transparent px-3 py-2 text-lg outline-none"
             />
             {error && <p className="text-sm text-red-600">{error}</p>}
 
@@ -133,13 +135,15 @@ export function AuthModal({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={isSubmitting}
+              className="h-10 rounded-md border border-input bg-transparent px-3 py-2 text-lg outline-none"
             />
 
             <div className="flex items-center justify-between">
               <Button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="w-full"
+                size="lg"
+                className="w-full cursor-pointer"
               >
                 {mode === "signin" ? "Continue" : "Create account"}
               </Button>
@@ -150,13 +154,12 @@ export function AuthModal({
 
             <Button
               type="button"
-              className="w-full flex items-center justify-center gap-2 mb-4"
+              size="lg"
+              className="w-full flex items-center justify-center gap-2 mb-4 cursor-pointer"
               onClick={handleGoogle}
               disabled={isSubmitting}
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9zm0 8.5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zM12 4.23c-2.06 0-3.75 1.32-3.95 3h1.99c-.2 1.68.87 3.05 2.5 3.65v.06c0 .31.06.62.16.93L12 17.77l7.3-5.05c.1-.31.16-.62.16-.93V7.23c1.87-2.68 1.53-3.01 2.5-3.69H15.95c.2 1.36-.93 2.74-2.5 3.65l-.02.03-.01.03c-.24.16-.51.26-.75.26H15.5c.03 0 .05 0 .07 0l.02-.03c.24-.16.47-.26.75-.26l.01-.03c1.57-1.06 2.3-2.45 2.5-3.69v-.06c1.57-1.06 2.3-2.45 2.5-3.69H15.5c.03 0 .05 0 .07 0l.02-.03c.24-.16.47-.26.75-.26l.01-.03c1.57-1.06 2.3-2.45 2.5-3.69H15.5c.03 0 .05 0 .07 0l.02-.03c.24-.16.47-.26.75-.26l.01-.03c1.57-1.06 2.3-2.45 2.5-3.69H12zm0 9.75c-2.2 0-4 1.78-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" />
-              </svg>
+              <FaGoogle />
               Continue with Google
             </Button>
           </div>
@@ -168,12 +171,24 @@ export function AuthModal({
         {/* Mode toggle link */}
         <div className="text-center text-sm text-muted-foreground">
           {mode === "signin" ? (
-            <span onClick={() => setMode("signup")}>
-              Don&apos;t have an account? Sign up
+            <span>
+              Don&apos;t have an account?{" "}
+              <span
+                onClick={() => setMode("signup")}
+                className="text-black font-bold hover:underline cursor-pointer"
+              >
+                Sign up
+              </span>
             </span>
           ) : (
-            <span onClick={() => setMode("signin")}>
-              Already have an account? Sign in
+            <span>
+              Already have an account?{" "}
+              <span
+                onClick={() => setMode("signin")}
+                className="text-black font-bold hover:underline cursor-pointer"
+              >
+                Sign in
+              </span>
             </span>
           )}
         </div>
